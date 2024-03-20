@@ -2,10 +2,10 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const express = require('express')
-const passport = require('passport')
 const mongoose = require('./db/database')
-const strategy = require('./strategys/local')
 
+const passport = require('passport')
+const strategy = require('./strategys/local')
 passport.use(strategy)
 
 const app = express()
