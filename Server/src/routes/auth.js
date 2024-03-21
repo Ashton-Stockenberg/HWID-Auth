@@ -6,13 +6,11 @@ const router = express.Router()
 
 passport.serializeUser((user, cb) => {
     process.nextTick(() => {
-        console.log(`${user._id}`)
         cb(null, {id: user._id, username: user.username})
     })
 })
 
 passport.deserializeUser((user, cb) => {
-    console.log(`${user}`)
     process.nextTick(() => {
         return cb(null, user)
     })

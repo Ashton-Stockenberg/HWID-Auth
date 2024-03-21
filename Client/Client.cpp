@@ -53,14 +53,41 @@ bool CreateAccount()
         system("cls");
         std::cout << "Failed to create account!\n";
         Sleep(1000);
-
-        return false;
     }
 }
 
 bool Login()
 {
-    return false;
+    while (true)
+    {
+        User user{};
+
+        system("cls");
+        user.hwid = GetHWID();
+
+        std::cout << "Username: ";
+        std::cin >> user.username;
+
+        std::cout << "Password: ";
+        std::cin >> user.password;
+
+        json data;
+        data["username"] = user.username;
+        data["password"] = user.password;
+        data["hwid"] = user.hwid;
+
+        if (auto res = cli.Post("/auth/login", data.dump(), "application/json"))
+        {
+            if (res->status == httplib::StatusCode::OK_200)
+            {
+                return true;
+            }
+        }
+
+        system("cls");
+        std::cout << "Failed to login!\n";
+        Sleep(1000);
+    }
 }
 
 int main()

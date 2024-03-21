@@ -1,5 +1,4 @@
 const mongoose = require('../database')
-const crypto = require('crypto')
 
 const userSchema = new mongoose.Schema({
     username: {type: String, lowercase: true, required: true, index: {unique: true}},
